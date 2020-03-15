@@ -1,0 +1,11 @@
+- name: Stat check for file
+  stat:
+    path: 
+  register: symlink_check
+
+- name: Symlink file
+  file:
+    src: "{{ role_path }}/files/"
+    dest: 
+    state: link
+  when: not symlink_check.stat.exists or not symlink_check.stat.islnk
