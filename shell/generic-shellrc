@@ -1,0 +1,15 @@
+# Configuration (if applicable)
+
+# Generators (if applicable)
+# template_dir="${HOME}/templates/generic"
+#
+# function gen::generic::init() {
+#   echo "Initializing generic project"
+#
+#   # Replace with program specific logic
+#   mkdir -p generic/{foo,bar,baz}/generic.generic
+#
+#   echo ""
+#   echo "Generic project initialized."
+# }
+
