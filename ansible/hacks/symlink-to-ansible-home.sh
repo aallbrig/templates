@@ -1,10 +1,20 @@
 #!/bin/bash
 
-# TODO: Implement
-# if roles directory exists, symlink all roles to ~/.ansible/roles
+if [ ${EUID:-$(id -u)} -ne 0 ]; then
+  echo "User is not root. Please run script as sudo in order to symlink files into /etc/ansible"
+  exit 1
+fi
 
-# if tasks directory exists, symlink all tasks to ~/.ansible/tasks
+if [ -d ansible/roles ]; then
+  echo "Ansible roles found"
+  ln -nsfv ansible/roles/* /etc/ansible/roles
+else
+  echo "Ansible roles not found"
+fi
 
-# if playbooks directory exists, symlink all playbooks to ~/.ansible/playbooks
-
-# if inventory directory exists, symlink all inventory to ~/.ansible/inventory
+if [ -d ansible/playbooks ]; then
+  echo "Ansible playbooks found"
+  ln -nsfv ansible/playbooks/* /etc/ansible/playbooks
+else
+  echo "Ansible playbooks not found in ansible/playbooks"
+fi
